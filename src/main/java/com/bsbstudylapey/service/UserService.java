@@ -1,5 +1,6 @@
 package com.bsbstudylapey.service;
 
+import com.bsbstudylapey.UserNotFoundException;
 import com.bsbstudylapey.UserRepository;
 import com.bsbstudylapey.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class UserService
     }
 
     public User findById(Long id) {
-        return userRepository.getReferenceById(id);
+        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
     public List<User> findAll() {
@@ -29,7 +30,11 @@ public class UserService
         return userRepository.save(user);
     }
 
-    public void deleteById(Long id) {
+    public String deleteUserById(Long id) {
+        if(!userRepository.existsById(id)) {
+            return "user is not deleted";
+        }
         userRepository.deleteById(id);
+        return "deleted successfully";
     }
 }
