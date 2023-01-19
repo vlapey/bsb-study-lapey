@@ -4,7 +4,7 @@ databaseChangeLog:
       author: vlad
       changes:
         - createTable:
-            tableName: User
+            tableName: user
             columns:
               - column:
                   name: id
@@ -15,17 +15,17 @@ databaseChangeLog:
                     primaryKeyName: user_pk
                     nullable: false
               - column:
-                  name: firstName
+                  name: first_name
                   type: varchar(60)
                   constraints:
                     nullable: false
               - column:
-                  name: lastName
+                  name: last_name
                   type: varchar(60)
                   constraints:
                     nullable: false
               - column:
-                  name: phoneNumber
+                  name: phone_number
                   type: varchar(60)
                   constraints:
                     nullable: false
@@ -35,13 +35,13 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
-                  name: createdAt
+                  name: created_at
                   type: timestamp without time zone
                   defaultValue: now()
                   constraints:
                     nullable: false
               - column:
-                  name: updatedAt
+                  name: updated_at
                   type: timestamp without time zone
                   defaultValue: now()
                   constraints:

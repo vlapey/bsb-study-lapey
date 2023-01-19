@@ -1,21 +1,30 @@
 package com.bsbstudylapey.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
 @Entity
+@Table(name = "User" , schema = "public")
 public class User
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName, lastName, phoneNumber, email;
-    private Date createdAt, updatedAt;
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
+    @Column(name = "phone_number")
+    private String phoneNumber;
+    @Column(name = "email")
+    private String email;
+    @Column(name = "created_at")
+    private Date createdAt;
+    @Column(name = "updated_at")
+    private Date updatedAt;
 
     public Long getId() {
         return id;
