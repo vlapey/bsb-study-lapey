@@ -1,0 +1,48 @@
+databaseChangeLog:
+  - changeSet:
+      id: dev1
+      author: vlad
+      changes:
+        - createTable:
+            tableName: User
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    primaryKeyName: user_pk
+                    nullable: false
+              - column:
+                  name: firstName
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lastName
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: phoneNumber
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: varchar(60)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: createdAt
+                  type: timestamp without time zone
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
+              - column:
+                  name: updatedAt
+                  type: timestamp without time zone
+                  defaultValue: now()
+                  constraints:
+                    nullable: false
