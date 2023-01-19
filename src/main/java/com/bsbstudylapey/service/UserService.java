@@ -30,7 +30,7 @@ public class UserService
         return userRepository.save(user);
     }
 
-    public String deleteUserById(Long id) {
+    public String deleteById(Long id) {
         if(!userRepository.existsById(id)) {
             return "user is not deleted";
         }
