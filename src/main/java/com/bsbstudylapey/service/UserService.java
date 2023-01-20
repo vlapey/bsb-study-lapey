@@ -24,7 +24,7 @@ public class UserService
 
     public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
-                HttpStatus.NOT_FOUND, "Such user does not exists"));
+                HttpStatus.NOT_FOUND, "Such user does not exist"));
     }
 
     public User createUser(UserRequest userRequest) {
@@ -57,7 +57,7 @@ public class UserService
 
     public String deleteById(Long id) {
         if(!userRepository.existsById(id)) {
-            return "such user does not exists";
+            return "such user does not exist";
         }
         userRepository.deleteById(id);
         return "deleted successfully";
