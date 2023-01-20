@@ -2,11 +2,17 @@ package com.bsbstudylapey.models;
 
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 
 @Entity
 @Table(name = "User" , schema = "public")
+@Data
+@AllArgsConstructor(staticName = "build")
+@NoArgsConstructor
 public class User
 {
     @Id
