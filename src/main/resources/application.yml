@@ -4,6 +4,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres
     username: admin
+    password: 123
 
   liquibase:
     change-log: classpath:liquibase/changelog.yml

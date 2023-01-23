@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 
 @Entity
-@Table(name = "User" , schema = "public")
+@Table(name = "user" , schema = "public")
 @Data
 @AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
