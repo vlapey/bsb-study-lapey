@@ -8,13 +8,19 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.annotation.Rollback;
 
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+@Rollback(value = false)
 public class UserServiceTest {
     @Autowired
     private UserRepository userRepository;
@@ -27,43 +33,53 @@ public class UserServiceTest {
         user.setLastName("lapey");
         user.setPhoneNumber("+375291248846");
         user.setEmail("dadaya10@gmail.com");
+        user.setCreatedAt(Date.valueOf(LocalDate.now()));
+        user.setUpdatedAt(Date.valueOf(LocalDate.now()));
         userRepository.save(user);
-        Assertions.assertThat(user.getId() > 0);
+        Assertions.assertThat(user.getId()).isGreaterThan(0);
     }
 
     @Test
     @Order(2)
     public void getUsersIdTest(){
-        User user = userRepository.findById(1L).get();
-        Assertions.assertThat(user.getId() == 1L);
+        var userList = userRepository.findAll();
+        var user = userList.get(userList.size() - 1);
+        Assertions.assertThat(user.getId()).isInstanceOf(Long.class);
     }
 
     @Test
     @Order(3)
     public void getListOfUsersTest() {
         List<User> users = userRepository.findAll();
-        Assertions.assertThat(users.size() >= 0);
+
+        Assertions.assertThat(users.size()).isGreaterThan(0);
     }
 
     @Test
     @Order(4)
     public void updateUserTest() {
-        User user = userRepository.findById(1L).get();
+        var userList = userRepository.findAll();
+        var user = userList.get(userList.size() - 1);
         user.setEmail("dadaya10@gmail.com");
         var savedUser = userRepository.save(user);
-        Assertions.assertThat(savedUser.getEmail() == "dadaya10@gmail.com");
+        Assertions.assertThat(savedUser.getEmail()).isEqualTo("dadaya10@gmail.com");
     }
 
     @Test
     @Order(5)
     public void deleteUserTest() {
-        User user = userRepository.findById(1L).get();
-        userRepository.delete(user);
-        Optional<User> optionalUser = userRepository.findByEmail("dadaya10@gmail.com");
+        var userList = userRepository.findAll();
+        var user = userList.get(userList.size() - 1);
+        var userId = user.getId();
+        userRepository.deleteById(userId);
+        var optionalUser = userRepository.findById(userId);
+//        Optional<User> optionalUser = userRepository.findByEmail("dadaya10@gmail.com");
         User userTest = null;
+
         if(optionalUser.isPresent()){
             userTest = optionalUser.get();
         }
-        Assertions.assertThat(userTest != null);
+
+        Assertions.assertThat(userTest).isNull();
     }
 }
