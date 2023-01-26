@@ -15,7 +15,6 @@ import org.springframework.test.annotation.Rollback;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -27,7 +26,7 @@ public class UserServiceTest {
 
     @Test
     @Order(1)
-    public void createUserTest(){
+    public void createUserTest() {
         User user = new User();
         user.setFirstName("vlad");
         user.setLastName("lapey");
@@ -41,7 +40,7 @@ public class UserServiceTest {
 
     @Test
     @Order(2)
-    public void getUsersIdTest(){
+    public void getUsersIdTest() {
         var userList = userRepository.findAll();
         var user = userList.get(userList.size() - 1);
         Assertions.assertThat(user.getId()).isInstanceOf(Long.class);
@@ -73,10 +72,9 @@ public class UserServiceTest {
         var userId = user.getId();
         userRepository.deleteById(userId);
         var optionalUser = userRepository.findById(userId);
-//        Optional<User> optionalUser = userRepository.findByEmail("dadaya10@gmail.com");
         User userTest = null;
 
-        if(optionalUser.isPresent()){
+        if (optionalUser.isPresent()) {
             userTest = optionalUser.get();
         }
 

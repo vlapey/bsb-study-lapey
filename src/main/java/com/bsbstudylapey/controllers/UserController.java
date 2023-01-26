@@ -15,13 +15,14 @@ import java.util.List;
 @RestController
 public class UserController {
     private final UserService userService;
+
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("user/findById")
-    public ResponseEntity<User> findById(Long id){
+    public ResponseEntity<User> findById(Long id) {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
@@ -36,7 +37,7 @@ public class UserController {
     }
 
     @PostMapping("user/updateUser")
-    public ResponseEntity<User> updateUser(@RequestBody @Valid UserRequest userRequest, Long id){
+    public ResponseEntity<User> updateUser(@RequestBody @Valid UserRequest userRequest, Long id) {
         return new ResponseEntity<>(userService.updateUser(userRequest, id), HttpStatus.OK);
     }
 

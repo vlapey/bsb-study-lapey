@@ -9,12 +9,11 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 
 @Entity
-@Table(name = "user" , schema = "public")
+@Table(name = "user", schema = "public")
 @Data
 @AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
-public class User
-{
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

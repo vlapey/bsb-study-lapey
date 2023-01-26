@@ -3,8 +3,8 @@ version: '3.5'
 services:
   db_auth:
     container_name: bsb-study
-    ports: 
-    - '5432:5432'
+    ports:
+      - '5432:5432'
     environment:
       - POSTGRES_PASSWORD=123
       - POSTGRES_USER=admin

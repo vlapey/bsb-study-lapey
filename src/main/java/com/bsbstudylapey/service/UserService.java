@@ -13,10 +13,13 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class UserService
-{
+public class UserService {
+    public static final String SUCH_USER_DOES_NOT_EXIST = "such user does not exist";
+    public static final String DELETED_SUCCESSFULLY = "deleted successfully";
+
     @Autowired
     private UserRepository userRepository;
+
 
     public List<User> findAll() {
         return userRepository.findAll();
@@ -31,19 +34,19 @@ public class UserService
         var createdDate = Date.valueOf(LocalDate.now());
         var updatedDate = createdDate;
 
-        User user = User.build((long)0, userRequest.getFirstName(), userRequest.getLastName(),
+        User user = User.build((long) 0, userRequest.getFirstName(), userRequest.getLastName(),
                 userRequest.getPhoneNumber(), userRequest.getEmail(), createdDate, updatedDate);
 
-        if(user.getCreatedAt() == null){
+        if (user.getCreatedAt() == null) {
             user.setCreatedAt(Date.valueOf(LocalDate.now()));
         }
-        if(user.getUpdatedAt() == null){
+        if (user.getUpdatedAt() == null) {
             user.setUpdatedAt(Date.valueOf(LocalDate.now()));
         }
         return userRepository.save(user);
     }
 
-    public User updateUser(UserRequest userRequest, Long id){
+    public User updateUser(UserRequest userRequest, Long id) {
         var oldUser = userRepository.findById(id).orElseThrow();
         var userId = oldUser.getId();
         var createdDate = oldUser.getCreatedAt();
@@ -56,10 +59,10 @@ public class UserService
     }
 
     public String deleteById(Long id) {
-        if(!userRepository.existsById(id)) {
-            return "such user does not exist";
+        if (!userRepository.existsById(id)) {
+            return SUCH_USER_DOES_NOT_EXIST;
         }
         userRepository.deleteById(id);
-        return "deleted successfully";
+        return DELETED_SUCCESSFULLY;
     }
 }
