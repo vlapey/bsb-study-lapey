@@ -1,6 +1,6 @@
 package com.bsbstudylapey.service;
 
-import com.bsbstudylapey.UserRepository;
+import com.bsbstudylapey.repo.UserRepository;
 import com.bsbstudylapey.dto.UserRequest;
 import com.bsbstudylapey.models.User;
 import org.springframework.beans.factory.annotation.Autowired;

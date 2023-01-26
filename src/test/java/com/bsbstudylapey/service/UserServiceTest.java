@@ -1,6 +1,6 @@
 package com.bsbstudylapey.service;
 
-import com.bsbstudylapey.UserRepository;
+import com.bsbstudylapey.repo.UserRepository;
 import com.bsbstudylapey.models.User;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.MethodOrderer;
