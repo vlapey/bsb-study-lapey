@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   db_auth:
-    container_name: bsb-study
+    container_name: postgres
     ports:
       - '5432:5432'
     environment:
