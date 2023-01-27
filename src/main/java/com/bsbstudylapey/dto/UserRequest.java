@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 import java.sql.Date;
 
 @Data
-@AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
+@AllArgsConstructor(staticName = "build")
 public class UserRequest {
     @NotNull(message = "firstname shouldn't be null")
     private String firstName;
