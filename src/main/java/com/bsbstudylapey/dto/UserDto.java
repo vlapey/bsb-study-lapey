@@ -13,7 +13,8 @@ import java.sql.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
-public class UserRequest {
+public class UserDto {
+
     @NotNull(message = "firstname shouldn't be null")
     private String firstName;
 
@@ -29,4 +30,5 @@ public class UserRequest {
 
     private Date createdAt;
     private Date updatedAt;
+
 }

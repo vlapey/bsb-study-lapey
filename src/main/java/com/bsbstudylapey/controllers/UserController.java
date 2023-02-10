@@ -1,6 +1,6 @@
 package com.bsbstudylapey.controllers;
 
-import com.bsbstudylapey.dto.UserRequest;
+import com.bsbstudylapey.dto.UserDto;
 import com.bsbstudylapey.models.User;
 import com.bsbstudylapey.service.UserService;
 import jakarta.validation.Valid;
@@ -32,13 +32,13 @@ public class UserController {
     }
 
     @PostMapping("user/saveUser")
-    public ResponseEntity<User> createUser(@RequestBody @Valid UserRequest userRequest) {
-        return new ResponseEntity<>(userService.createUser(userRequest), HttpStatus.OK);
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserDto userDto) {
+        return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.OK);
     }
 
     @PostMapping("user/updateUser")
-    public ResponseEntity<User> updateUser(@RequestBody @Valid UserRequest userRequest, Long id) {
-        return new ResponseEntity<>(userService.updateUser(userRequest, id), HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@RequestBody @Valid UserDto userDto, Long id) {
+        return new ResponseEntity<>(userService.updateUser(userDto, id), HttpStatus.OK);
     }
 
     @DeleteMapping("user/deleteById")

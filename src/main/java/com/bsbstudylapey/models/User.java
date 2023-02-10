@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "user", schema = "public")
@@ -31,6 +32,14 @@ public class User {
     private Date createdAt;
     @Column(name = "updated_at")
     private Date updatedAt;
+
+    @ManyToMany
+    @JoinTable(
+            name = "address_user",
+            joinColumns = { @JoinColumn(name = "address_user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "user_address_id")}
+    )
+    private List<Address> addressUser;
 
     public Long getId() {
         return id;

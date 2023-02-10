@@ -11,24 +11,73 @@
     <column  name="id"  type="bigint"  autoIncrement="true">
         <constraints  primaryKey="true"  nullable="false"/>
     </column>
+
         <column  name="first_name"  type="varchar(60)">
             <constraints  nullable="false"/>
         </column>
+
         <column  name="last_name"  type="varchar(60)">
             <constraints  nullable="false"/>
         </column>
+
         <column  name="phone_number"  type="varchar(60)">
             <constraints  nullable="false"/>
         </column>
+
         <column  name="email"  type="varchar(60)">
             <constraints  nullable="false"/>
         </column>
+
         <column  name="created_at"  type="timestamp without time zone" defaultValue="now()">
             <constraints  nullable="false"/>
         </column>
+
         <column  name="updated_at"  type="timestamp without time zone" defaultValue="now()">
             <constraints  nullable="false"/>
         </column>
+
     </createTable>
+        <createTable  tableName="address">
+            <column  name="id"  type="bigint"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+
+            <column  name="country_name"  type="varchar(30)">
+                <constraints  nullable="false"/>
+            </column>
+
+            <column  name="city_name"  type="varchar(30)">
+                <constraints  nullable="false"/>
+            </column>
+
+            <column  name="street"  type="varchar(30)">
+                <constraints  nullable="false"/>
+            </column>
+
+        </createTable>
+
+        <createTable  tableName="document">
+            <column  name="id"  type="bigint"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+
+            <column  name="document_name"  type="varchar(60)">
+                <constraints  nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable  tableName="address_user">
+            <column  name="id"  type="bigint"  autoIncrement="true">
+                <constraints  primaryKey="true"  nullable="false"/>
+            </column>
+
+            <column  name="address_user_id"  type="bigint">
+                <constraints  nullable="false" foreignKeyName="fk_addresses_users" references="user(id)"/>
+            </column>
+
+            <column  name="user_address_id"  type="bigint">
+                <constraints  nullable="false" foreignKeyName="fk_users_addresses" references="address(id)"/>
+            </column>
+        </createTable>
     </changeSet>
 </databaseChangeLog>
