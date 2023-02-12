@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import static com.bsbstudylapey.Constants.DELETED_SUCCESSFULLY;
 import static com.bsbstudylapey.Constants.SUCH_ENTITY_DOES_NOT_EXIST;
@@ -42,8 +43,8 @@ public class AddressService {
     }
 
     public Address updateAddress(AddressDto addressDto, Long id) {
-        var oldAddress = addressRepository.findById(id).orElseThrow();
-        var addressId = oldAddress.getId();
+        Address oldAddress = addressRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        Long addressId = oldAddress.getId();
 
         Address address = Address.build(addressId, addressDto.getCountryName(), addressDto.getCityName(),
                 addressDto.getStreet());

@@ -33,8 +33,8 @@ public class UserService {
     }
 
     public User createUser(UserDto userDto) {
-        var createdDate = Date.valueOf(LocalDate.now());
-        var updatedDate = createdDate;
+        Date createdDate = Date.valueOf(LocalDate.now());
+        Date updatedDate = createdDate;
 
         List<Address> addressList = new ArrayList<>();
         Address address = new Address();
@@ -47,10 +47,10 @@ public class UserService {
     }
 
     public User updateUser(UserDto userDto, Long id) {
-        var oldUser = userRepository.findById(id).orElseThrow();
-        var userId = oldUser.getId();
-        var createdDate = oldUser.getCreatedAt();
-        var updatedDate = Date.valueOf(LocalDate.now());
+        User oldUser = userRepository.findById(id).get();
+        Long userId = oldUser.getId();
+        Date createdDate = oldUser.getCreatedAt();
+        Date updatedDate = Date.valueOf(LocalDate.now());
 
         List<Address> addressList = new ArrayList<>();
         Address address = new Address();

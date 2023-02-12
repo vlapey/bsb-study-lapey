@@ -15,6 +15,7 @@ import org.springframework.test.annotation.Rollback;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
@@ -41,8 +42,8 @@ public class UserServiceTest {
     @Test
     @Order(2)
     public void getUsersIdTest() {
-        var userList = userRepository.findAll();
-        var user = userList.get(userList.size() - 1);
+        List<User> userList = userRepository.findAll();
+        User user = userList.get(userList.size() - 1);
         Assertions.assertThat(user.getId()).isInstanceOf(Long.class);
     }
 
@@ -57,21 +58,21 @@ public class UserServiceTest {
     @Test
     @Order(4)
     public void updateUserTest() {
-        var userList = userRepository.findAll();
-        var user = userList.get(userList.size() - 1);
+        List<User> userList = userRepository.findAll();
+        User user = userList.get(userList.size() - 1);
         user.setEmail("dadaya10@gmail.com");
-        var savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(user);
         Assertions.assertThat(savedUser.getEmail()).isEqualTo("dadaya10@gmail.com");
     }
 
     @Test
     @Order(5)
     public void deleteUserTest() {
-        var userList = userRepository.findAll();
-        var user = userList.get(userList.size() - 1);
-        var userId = user.getId();
+        List<User> userList = userRepository.findAll();
+        User user = userList.get(userList.size() - 1);
+        Long userId = user.getId();
         userRepository.deleteById(userId);
-        var optionalUser = userRepository.findById(userId);
+        Optional<User> optionalUser = userRepository.findById(userId);
         User userTest = null;
 
         if (optionalUser.isPresent()) {
