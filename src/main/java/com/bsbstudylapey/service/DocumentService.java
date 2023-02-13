@@ -47,7 +47,7 @@ public class DocumentService {
     public Document updateDocument(DocumentDto documentDto, Long id, Long userId) {
         Document oldDocument = documentRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
         documentDto.setId(oldDocument.getId());
-        if(documentDto.getDocumentName().isEmpty()) {
+        if (documentDto.getDocumentName().isEmpty()) {
             documentDto.setDocumentName(oldDocument.getDocumentName());
         }
         if (userId == null) {
