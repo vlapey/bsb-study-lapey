@@ -23,7 +23,7 @@ public class AddressService {
     @Autowired
     private AddressRepository addressRepository;
 
-    public List<Address> findAll(){
+    public List<Address> findAll() {
         return addressRepository.findAll();
     }
 
@@ -35,7 +35,7 @@ public class AddressService {
     public Address createAddress(AddressDto addressDto) {
         List<User> userList = new ArrayList<>();
         User user = new User();
-        user.setId((long)1);
+        user.setId((long) 1);
         userList.add(user);
         Address address = Address.build((long) 0, addressDto.getCountryName(), addressDto.getCityName(), addressDto.getStreet());
 

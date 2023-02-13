@@ -2,7 +2,10 @@ package com.bsbstudylapey.models;
 
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -43,7 +46,7 @@ public class User {
     @ManyToMany
     @JoinTable(
             name = "address_user",
-            joinColumns = { @JoinColumn(name = "address_user_id")},
+            joinColumns = {@JoinColumn(name = "address_user_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_address_id")}
     )
     private List<Address> addressOfUser;

@@ -1,11 +1,11 @@
 package com.bsbstudylapey.service;
 
+import com.bsbstudylapey.dto.UserDto;
 import com.bsbstudylapey.mappers.UserMapper;
 import com.bsbstudylapey.models.Address;
+import com.bsbstudylapey.models.User;
 import com.bsbstudylapey.repo.AddressRepository;
 import com.bsbstudylapey.repo.UserRepository;
-import com.bsbstudylapey.dto.UserDto;
-import com.bsbstudylapey.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -32,7 +32,7 @@ public class UserService {
     }
 
     public User findById(Long id) {
-         return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
+        return userRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.NOT_FOUND, "Such user does not exist"));
     }
 
@@ -49,11 +49,11 @@ public class UserService {
         User userBeforeUpdate = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
         userDto.setCreatedAt(userBeforeUpdate.getCreatedAt());
         userDto.setId(id);
-        if (addressId == null){
+        if (addressId == null) {
             userDto.setAddressOfUser(userBeforeUpdate.getAddressOfUser());
             return userRepository.save(UserMapper.INSTANCE.dtoToUser(userDto));
         }
-        addressList.add(addressRepository.findById(addressId).orElseThrow(()-> new NoSuchElementException()));
+        addressList.add(addressRepository.findById(addressId).orElseThrow(() -> new NoSuchElementException()));
         userDto.setAddressOfUser(addressList);
         return userRepository.save(UserMapper.INSTANCE.dtoToUser(userDto));
     }
