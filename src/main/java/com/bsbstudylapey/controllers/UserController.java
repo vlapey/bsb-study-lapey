@@ -32,13 +32,13 @@ public class UserController {
     }
 
     @PostMapping("user/saveUser")
-    public ResponseEntity<User> createUser(@RequestBody @Valid UserDto userDto) {
-        return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.OK);
+    public ResponseEntity<User> createUser(@RequestBody @Valid UserDto userDto, Long addressId) {
+        return new ResponseEntity<>(userService.createUser(userDto, addressId), HttpStatus.OK);
     }
 
     @PostMapping("user/updateUser")
-    public ResponseEntity<User> updateUser(@RequestBody @Valid UserDto userDto, Long id) {
-        return new ResponseEntity<>(userService.updateUser(userDto, id), HttpStatus.OK);
+    public ResponseEntity<User> updateUser(@RequestBody @Valid UserDto userDto, Long id, Long addressId) {
+        return new ResponseEntity<>(userService.updateUser(userDto, id, addressId), HttpStatus.OK);
     }
 
     @DeleteMapping("user/deleteById")

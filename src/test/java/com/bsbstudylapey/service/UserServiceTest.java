@@ -33,8 +33,6 @@ public class UserServiceTest {
         user.setLastName("lapey");
         user.setPhoneNumber("+375291248846");
         user.setEmail("dadaya10@gmail.com");
-        user.setCreatedAt(Date.valueOf(LocalDate.now()));
-        user.setUpdatedAt(Date.valueOf(LocalDate.now()));
         userRepository.save(user);
         Assertions.assertThat(user.getId()).isGreaterThan(0);
     }

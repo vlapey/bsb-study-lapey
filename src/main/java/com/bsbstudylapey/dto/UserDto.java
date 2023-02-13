@@ -1,14 +1,17 @@
 package com.bsbstudylapey.dto;
 
 
+import com.bsbstudylapey.models.Address;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
+import java.util.List;
 
+@Builder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
@@ -29,6 +32,8 @@ public class UserDto {
     @Email(message = "invalid email entered")
     private String email;
 
-    private Date createdAt;
-    private Date updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    private List<Address> addressOfUser;
 }

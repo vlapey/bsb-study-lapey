@@ -3,10 +3,13 @@ package com.bsbstudylapey.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
+@Builder
 @Entity
 @Table(name = "user", schema = "public")
 @Data
@@ -28,10 +31,14 @@ public class User {
     private String phoneNumber;
     @Column(name = "email")
     private String email;
+
+    @CreationTimestamp
     @Column(name = "created_at")
-    private Date createdAt;
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
     @Column(name = "updated_at")
-    private Date updatedAt;
+    private LocalDateTime updatedAt;
 
     @ManyToMany
     @JoinTable(
@@ -39,6 +46,5 @@ public class User {
             joinColumns = { @JoinColumn(name = "address_user_id")},
             inverseJoinColumns = {@JoinColumn(name = "user_address_id")}
     )
-    private List<Address> addressUser;
-
+    private List<Address> addressOfUser;
 }
