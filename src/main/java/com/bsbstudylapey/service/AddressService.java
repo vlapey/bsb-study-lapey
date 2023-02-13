@@ -1,8 +1,8 @@
 package com.bsbstudylapey.service;
 
 import com.bsbstudylapey.dto.AddressDto;
+import com.bsbstudylapey.mappers.AddressMapper;
 import com.bsbstudylapey.models.Address;
-import com.bsbstudylapey.models.User;
 import com.bsbstudylapey.repo.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -33,23 +33,13 @@ public class AddressService {
     }
 
     public Address createAddress(AddressDto addressDto) {
-        List<User> userList = new ArrayList<>();
-        User user = new User();
-        user.setId((long) 1);
-        userList.add(user);
-        Address address = Address.build((long) 0, addressDto.getCountryName(), addressDto.getCityName(), addressDto.getStreet());
-
-        return addressRepository.save(address);
+        return addressRepository.save(AddressMapper.INSTANCE.dtoToAddress(addressDto));
     }
 
     public Address updateAddress(AddressDto addressDto, Long id) {
         Address oldAddress = addressRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
-        Long addressId = oldAddress.getId();
-
-        Address address = Address.build(addressId, addressDto.getCountryName(), addressDto.getCityName(),
-                addressDto.getStreet());
-
-        return addressRepository.save(address);
+        addressDto.setId(oldAddress.getId());
+        return addressRepository.save(AddressMapper.INSTANCE.dtoToAddress(addressDto));
     }
 
     public String deleteById(Long id) {

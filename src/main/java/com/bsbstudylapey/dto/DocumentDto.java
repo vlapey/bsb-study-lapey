@@ -1,5 +1,6 @@
 package com.bsbstudylapey.dto;
 
+import com.bsbstudylapey.models.User;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -9,17 +10,13 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
-public class AddressDto {
+public class DocumentDto {
 
     @Id
     private Long id;
 
-    @NotNull(message = "country name shouldn't be null")
-    private String countryName;
+    @NotNull(message = "document_name shouldn't be null")
+    private String documentName;
 
-    @NotNull(message = "city name shouldn't be null")
-    private String cityName;
-
-    @NotNull(message = "street shouldn't be null")
-    private String street;
+    private User user;
 }

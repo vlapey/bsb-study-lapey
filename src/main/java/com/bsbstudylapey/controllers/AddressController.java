@@ -44,5 +44,4 @@ public class AddressController {
     public ResponseEntity<String> deleteById(Long id) {
         return new ResponseEntity<>(addressService.deleteById(id), HttpStatus.OK);
     }
-
 }

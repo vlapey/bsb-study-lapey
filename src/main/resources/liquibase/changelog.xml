@@ -64,6 +64,11 @@
             <column  name="document_name"  type="varchar(60)">
                 <constraints  nullable="false"/>
             </column>
+
+            <column name="user_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="fk_user_document" references="user(id)"/>
+            </column>
+
         </createTable>
 
         <createTable  tableName="address_user">

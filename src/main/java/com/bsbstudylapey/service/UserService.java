@@ -46,11 +46,11 @@ public class UserService {
 
     public User updateUser(UserDto userDto, Long id, Long addressId) {
         List<Address> addressList = new ArrayList<>();
-        User userBeforeUpdate = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
-        userDto.setCreatedAt(userBeforeUpdate.getCreatedAt());
+        User oldUser = userRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+        userDto.setCreatedAt(oldUser.getCreatedAt());
         userDto.setId(id);
         if (addressId == null) {
-            userDto.setAddressOfUser(userBeforeUpdate.getAddressOfUser());
+            userDto.setAddressOfUser(oldUser.getAddressOfUser());
             return userRepository.save(UserMapper.INSTANCE.dtoToUser(userDto));
         }
         addressList.add(addressRepository.findById(addressId).orElseThrow(() -> new NoSuchElementException()));
