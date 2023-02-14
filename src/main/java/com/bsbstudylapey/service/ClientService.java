@@ -21,8 +21,8 @@ import static com.bsbstudylapey.Constants.SUCH_ENTITY_DOES_NOT_EXIST;
 @Service
 public class ClientService {
 
-    private ClientRepository clientRepository;
-    private AddressRepository addressRepository;
+    private final ClientRepository clientRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
     public ClientService(ClientRepository clientRepository, AddressRepository addressRepository) {

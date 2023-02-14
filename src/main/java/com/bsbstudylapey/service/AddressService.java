@@ -18,7 +18,7 @@ import static com.bsbstudylapey.Constants.SUCH_ENTITY_DOES_NOT_EXIST;
 
 @Service
 public class AddressService {
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
     public AddressService(AddressRepository addressRepository) {

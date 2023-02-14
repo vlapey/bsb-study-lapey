@@ -20,8 +20,8 @@ import static com.bsbstudylapey.Constants.SUCH_ENTITY_DOES_NOT_EXIST;
 @Service
 public class DocumentService {
 
-    private DocumentRepository documentRepository;
-    private ClientRepository clientRepository;
+    private final DocumentRepository documentRepository;
+    private final ClientRepository clientRepository;
 
     @Autowired
     public DocumentService(DocumentRepository documentRepository, ClientRepository clientRepository) {
