@@ -37,7 +37,7 @@ public class AddressController {
     }
 
     @PostMapping("/updateAddress")
-    public ResponseEntity<Address> updateUser(@RequestBody @Valid AddressDto addressDto, Long id) {
+    public ResponseEntity<Address> updateAddress(@RequestBody @Valid AddressDto addressDto, Long id) {
         return new ResponseEntity<>(addressService.updateAddress(addressDto, id), HttpStatus.OK);
     }
 

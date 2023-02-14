@@ -14,15 +14,15 @@ import java.util.List;
 
 @Builder
 @Entity
-@Table(name = "user", schema = "public")
+@Table(name = "client", schema = "public")
 @Data
 @AllArgsConstructor(staticName = "build")
 @NoArgsConstructor
-public class User {
+public class Client {
 
 
     @Id
-    @SequenceGenerator(name = "sequence", sequenceName = "user_id_seq", allocationSize = 1)
+    @SequenceGenerator(name = "sequence", sequenceName = "client_id_seq", allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequence")
     private Long id;
 
@@ -45,9 +45,9 @@ public class User {
 
     @ManyToMany
     @JoinTable(
-            name = "address_user",
-            joinColumns = {@JoinColumn(name = "address_user_id")},
-            inverseJoinColumns = {@JoinColumn(name = "user_address_id")}
+            name = "address_client",
+            joinColumns = {@JoinColumn(name = "address_clint_id")},
+            inverseJoinColumns = {@JoinColumn(name = "client_address_id")}
     )
-    private List<Address> addressOfUser;
+    private List<Address> addressOfClient;
 }

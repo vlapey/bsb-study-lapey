@@ -1,6 +1,6 @@
 package com.bsbstudylapey.dto;
 
-import com.bsbstudylapey.models.User;
+import com.bsbstudylapey.models.Client;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -18,5 +18,5 @@ public class DocumentDto {
     @NotNull(message = "document_name shouldn't be null")
     private String documentName;
 
-    private User user;
+    private Client client;
 }

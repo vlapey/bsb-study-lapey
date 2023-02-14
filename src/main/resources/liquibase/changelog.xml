@@ -7,7 +7,7 @@
 
 
     <changeSet  id="1"  author="dev1">
-    <createTable  tableName="user">
+    <createTable  tableName="client">
     <column  name="id"  type="bigint"  autoIncrement="true">
         <constraints  primaryKey="true"  nullable="false"/>
     </column>
@@ -65,23 +65,23 @@
                 <constraints  nullable="false"/>
             </column>
 
-            <column name="user_id" type="bigint">
-                <constraints nullable="true" foreignKeyName="fk_user_document" references="user(id)"/>
+            <column name="client_id" type="bigint">
+                <constraints nullable="true" foreignKeyName="fk_client_document" references="client(id)"/>
             </column>
 
         </createTable>
 
-        <createTable  tableName="address_user">
+        <createTable  tableName="address_client">
             <column  name="id"  type="bigint"  autoIncrement="true">
                 <constraints  primaryKey="true"  nullable="false"/>
             </column>
 
-            <column  name="address_user_id"  type="bigint">
-                <constraints  nullable="false" foreignKeyName="fk_addresses_users" references="user(id)"/>
+            <column  name="address_client_id"  type="bigint">
+                <constraints  nullable="false" foreignKeyName="fk_addresses_clients" references="client(id)"/>
             </column>
 
-            <column  name="user_address_id"  type="bigint">
-                <constraints  nullable="false" foreignKeyName="fk_users_addresses" references="address(id)"/>
+            <column  name="client_address_id"  type="bigint">
+                <constraints  nullable="false" foreignKeyName="fk_clients_addresses" references="address(id)"/>
             </column>
         </createTable>
     </changeSet>

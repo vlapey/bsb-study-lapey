@@ -18,7 +18,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor(staticName = "build")
-public class UserDto {
+public class ClientDto {
     @Id
     private Long id;
 
@@ -38,5 +38,5 @@ public class UserDto {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
-    private List<Address> addressOfUser;
+    private List<Address> addressOfClient;
 }

@@ -20,5 +20,5 @@ public class Document {
     private String documentName;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    private User user;
+    private Client client;
 }

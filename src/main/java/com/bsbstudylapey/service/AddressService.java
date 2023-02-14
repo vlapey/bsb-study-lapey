@@ -18,9 +18,12 @@ import static com.bsbstudylapey.Constants.SUCH_ENTITY_DOES_NOT_EXIST;
 
 @Service
 public class AddressService {
+    private AddressRepository addressRepository;
 
     @Autowired
-    private AddressRepository addressRepository;
+    public AddressService(AddressRepository addressRepository) {
+        this.addressRepository = addressRepository;
+    }
 
     public List<Address> findAll() {
         return addressRepository.findAll();
