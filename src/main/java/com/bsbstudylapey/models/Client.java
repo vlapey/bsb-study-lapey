@@ -46,7 +46,7 @@ public class Client {
     @ManyToMany
     @JoinTable(
             name = "address_client",
-            joinColumns = {@JoinColumn(name = "address_clint_id")},
+            joinColumns = {@JoinColumn(name = "address_client_id")},
             inverseJoinColumns = {@JoinColumn(name = "client_address_id")}
     )
     private List<Address> addressOfClient;
