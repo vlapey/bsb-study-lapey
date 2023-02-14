@@ -35,7 +35,7 @@ public class TokenService {
                 .subject(authentication.getName())
                 .claim("scope", scope)
                 .build();
-        var encoderParameters =
+        JwtEncoderParameters encoderParameters =
                 JwtEncoderParameters.from(JwsHeader.with(MacAlgorithm.HS256).build(), claims);
 
         return this.encoder.encode(encoderParameters).getTokenValue();
