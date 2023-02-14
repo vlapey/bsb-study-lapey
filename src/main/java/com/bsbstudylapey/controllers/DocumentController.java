@@ -12,36 +12,38 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/document")
 public class DocumentController {
 
-    @Autowired
+
     private final DocumentService documentService;
 
+    @Autowired
     public DocumentController(DocumentService documentService) {
         this.documentService = documentService;
     }
 
-    @GetMapping("document/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<Document>> findAll() {
         return new ResponseEntity<>(documentService.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("document/findById")
+    @GetMapping("/findById")
     public ResponseEntity<Document> findById(Long id) {
         return new ResponseEntity<>(documentService.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping("document/saveDocument")
+    @PostMapping("/saveDocument")
     public ResponseEntity<Document> createDocument(@RequestBody @Valid DocumentDto documentDto, Long userId) {
         return new ResponseEntity<>(documentService.createDocument(documentDto, userId), HttpStatus.OK);
     }
 
-    @PostMapping("document/updateDocument")
+    @PostMapping("/updateDocument")
     public ResponseEntity<Document> updateDocument(@RequestBody @Valid DocumentDto documentDto, Long id, Long userId) {
         return new ResponseEntity<>(documentService.updateDocument(documentDto, id, userId), HttpStatus.OK);
     }
 
-    @DeleteMapping("document/deleteById")
+    @DeleteMapping("/deleteById")
     public ResponseEntity<String> deleteById(Long id) {
         return new ResponseEntity<>(documentService.deleteById(id), HttpStatus.OK);
     }

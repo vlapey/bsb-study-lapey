@@ -13,6 +13,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
     private final UserService userService;
 
@@ -21,27 +22,27 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("user/findById")
+    @GetMapping("/findById")
     public ResponseEntity<User> findById(Long id) {
         return new ResponseEntity<>(userService.findById(id), HttpStatus.OK);
     }
 
-    @GetMapping("user/findAll")
+    @GetMapping("/findAll")
     public ResponseEntity<List<User>> findAll() {
         return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
     }
 
-    @PostMapping("user/saveUser")
+    @PostMapping("/saveUser")
     public ResponseEntity<User> createUser(@RequestBody @Valid UserDto userDto, Long addressId) {
         return new ResponseEntity<>(userService.createUser(userDto, addressId), HttpStatus.OK);
     }
 
-    @PostMapping("user/updateUser")
+    @PostMapping("/updateUser")
     public ResponseEntity<User> updateUser(@RequestBody @Valid UserDto userDto, Long id, Long addressId) {
         return new ResponseEntity<>(userService.updateUser(userDto, id, addressId), HttpStatus.OK);
     }
 
-    @DeleteMapping("user/deleteById")
+    @DeleteMapping("/deleteById")
     public ResponseEntity<String> deleterById(Long id) {
         return new ResponseEntity<>(userService.deleteById(id), HttpStatus.OK);
     }
